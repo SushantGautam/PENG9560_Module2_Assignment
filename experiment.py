@@ -63,7 +63,7 @@ def run_algorithm(algo_name):
         case "RCS":
             x = RCS(horizon, pref_mat).run()
         case "THOMPSON":
-            x = THOMPSON(horizon, pref_mat, regret_fn).run()
+            x = THOMPSON(horizon, pref_mat, regret_fn, n_arms=2).run()
         case _:
             raise ValueError("Invalid algorithm name")
 
