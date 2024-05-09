@@ -75,8 +75,8 @@ for i in range(samples):
 
 filename= os.path.basename(dataset).split('.')[0] + "_" +args.run_name
 if args.save_result: 
-    with open(filename+".json", 'w') as f: json.dump(d, f)
-    print("\nResults saved as", filename+".json")
+    with open(filename+"_.json", 'w') as f: json.dump(d, f)
+    print("\nResults saved as", filename+"_.json")
 
 extend_array = lambda input_array: np.array(list(map(lambda arr: arr + [arr[-1]] * (max(map(len, input_array)) - len(arr)), input_array)))
 for key, val in d.items():
