@@ -9,9 +9,9 @@ View in [Overleaf](https://www.overleaf.com/read/bpqxdfxbsxds#deab8a)
 
 Resource Folder at [Google Drive](https://drive.google.com/drive/u/0/folders/1ZamN8_n0ETlPOtv5ehjcDv1lExfxLtVT)
 
-
+## Usage:
 ```python
-usage: experiment.py [-h] [--horizon HORIZON] [--samples SAMPLES] [--dataset DATASET] [--models MODELS [MODELS ...]]
+ python experiment.py [-h] [--horizon HORIZON] [--samples SAMPLES] [--dataset DATASET] [--models MODELS [MODELS ...]]
                      [--save_result SAVE_RESULT] [--best_arm BEST_ARM] [--run_name RUN_NAME]
 
 Arguments for the experiment.
