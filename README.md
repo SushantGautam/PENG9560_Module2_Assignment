@@ -1,5 +1,6 @@
 # PENG9560_Module2_Assignment
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/SushantGautam/PENG9560_Module2_Assignment/HEAD)
 
 at /home/sushant/D1/Assignments/AI_9560_module2
 
