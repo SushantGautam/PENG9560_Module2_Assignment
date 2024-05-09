@@ -10,3 +10,6 @@ python -m pip install -r requirements.txt
 
 # change the experiment params before submitting.
 sun python experiment.py --horizon 1000 --samples 10 --dataset data/10_art.npy  --best_arm 0  --save_result true --run_name $JOB_ID  --models RMED1 RMED2 IF BTM DOUBLER
+
+
+# submit job with:  sbatch run.slurm
