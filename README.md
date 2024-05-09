@@ -62,5 +62,6 @@ Zoghi, Masrour, et al. "WSDM '14: Proceedings of the 7th ACM international confe
 
 
 ## Good resources
+#### https://github.com/chang-li/MergeDTS
 #### https://pratikgajane.github.io/files/PhD-thesis-Pratik-Gajane.pdf
 #### https://github.com/methi1999/dueling-bandits
