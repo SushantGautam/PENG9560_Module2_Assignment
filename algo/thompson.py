@@ -29,7 +29,6 @@ class sbm():
         else:
             self.beta[arm] += 1
 
-# class THOMPSON():
 class THOMPSON():
     def __init__(self, horizon, pref, regret_func):
         self.pref_matrix = np.array(pref)
