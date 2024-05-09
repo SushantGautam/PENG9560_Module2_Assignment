@@ -13,3 +13,4 @@ sun python experiment.py --horizon 1000 --samples 10 --dataset data/10_art.npy  
 
 
 # submit job with:  sbatch run.slurm
+
