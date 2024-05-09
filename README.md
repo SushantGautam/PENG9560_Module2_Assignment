@@ -11,7 +11,7 @@ Resource Folder at [Google Drive](https://drive.google.com/drive/u/0/folders/1Za
 ## Usage:
 Example:
 ```python
- python experiment.py  --horizon 1000 --samples 10 --dataset data/10_art.npy  --best_arm 0   --save_result true --run_name run1  --models RMED1 RMED2 IF BTM DOUBLER
+ python experiment.py  --horizon 1000 --samples 10 --dataset data/10_art.npy  --best_arm 0   --save_result true --run_name run1  --models RMED1 IF BTM DOUBLER THOMPSON
 ```
 Run quickly on [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/SushantGautam/PENG9560_Module2_Assignment/HEAD). Start a terminal and enter command above.
 

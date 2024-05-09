@@ -10,6 +10,7 @@ from algo.DOUBLER import DOUBLER
 from algo.savage import SAVAGE
 from algo.rucb import RUCB
 from algo.rcs import RCS
+from algo.thompson import THOMPSON
 import argparse
 import warnings; warnings.filterwarnings("ignore", category=DeprecationWarning) 
 
@@ -17,7 +18,7 @@ import warnings; warnings.filterwarnings("ignore", category=DeprecationWarning)
 parser = argparse.ArgumentParser(description="Arguments for the experiment.")
 parser.add_argument("--horizon", type=int, default=100, help="Horizon for the experiment.")
 parser.add_argument("--samples", type=int, default=3, help="Number of samples for the experiment.")
-parser.add_argument("--models", type=str, nargs='+', help="List of models for the experiment.", default=["RMED1", "RMED2", "IF", "BTM", "DOUBLER", "SAVAGE", "RUCB", "RCS"])
+parser.add_argument("--models", type=str, nargs='+', help="List of models for the experiment.", default=["RMED1", "RMED2", "IF", "BTM", "DOUBLER", "SAVAGE", "RUCB", "RCS", "THOMPSON"])
 parser.add_argument("--dataset", type=str, default="data/10_art.npy", help=".npy dataset path for the experiment.")
 parser.add_argument("--best_arm", type=int, default=0, help="Index of the best arm.")
 parser.add_argument("--save_result", type=bool, default=True, help="Save the results as JSON.")
@@ -39,7 +40,7 @@ generator_fnc = lambda i, j: np.random.binomial(n=1, p=pref_mat[int(i)][int(j)],
 regret_fn = lambda i, j: pref_mat[best_arm][int(i)] + pref_mat[best_arm][int(j)] - 1
 f_rmed = lambda k: 0.3 * (k**1.01)
 
-# algo_list = ["RMED1", "RMED2", "IF", "BTM", "DOUBLER", "SAVAGE", "RUCB", "RCS"]
+# algo_list = ["RMED1", "RMED2", "IF", "BTM", "DOUBLER", "SAVAGE", "RUCB", "RCS", "THOMPSON"]
 algo_list= args.models
 d = {key+"_regrets": [] for key in algo_list}
 
@@ -61,10 +62,12 @@ def run_algorithm(algo_name):
             x = RUCB(horizon, pref_mat).run()
         case "RCS":
             x = RCS(horizon, pref_mat).run()
+        case "THOMPSON":
+            x = THOMPSON(horizon, pref_mat, regret_fn).run()
         case _:
             raise ValueError("Invalid algorithm name")
 
-    print("RMED:", x[1], end=" ")
+    print(f"{algo_name}:", x[1], end=" ")
     d[f"{algo_name}_regrets"].append(x[0])
         
         
