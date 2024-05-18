@@ -2,3 +2,4 @@
 *_.json
 **__pycache__
 slurm.*
+**_simula/**

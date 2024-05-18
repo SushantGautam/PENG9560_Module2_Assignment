@@ -3,17 +3,17 @@ import random
 import math
 
 class PreferenceMatrix():
-    def __init__(self):
+    def __init__(self, n_arms=None):
         self.p_values = None
         self.condorcet_winner = None
-        self.n_arms = None
+        self.n_arms = n_arms
         self.delta = None
 
     def init(self, p_mat):
 
         self.p_values = p_mat
-
-        self.n_arms = self.p_values.shape[0]
+        if self.n_arms is None:
+            self.n_arms = self.p_values.shape[0]
 
         self.set_condorcet_winner()
 
@@ -379,31 +379,31 @@ def run_rcs_algorithm(arms, horizon):
     return cumulative_regret, np.argmax(algorithm.wins.mean(axis=0))
 
 
-def run_several_iterations(iterations, arms, horizon):
+# def run_several_iterations(iterations, arms, horizon):
 
-    # Initializing the results vector.
-    results = np.zeros(horizon)
+#     # Initializing the results vector.
+#     results = np.zeros(horizon)
 
-    for iteration in range(iterations):
-        # print(iteration)
-        # Adding the regret.
-        rest, best_arm = run_rcs_algorithm(arms, horizon)
-        results += rest
-    return results/(iterations + .0), best_arm
+#     for iteration in range(iterations):
+#         # print(iteration)
+#         # Adding the regret.
+#         rest, best_arm = run_rcs_algorithm(arms, horizon)
+#         results += rest
+#     return results/(iterations + .0), best_arm
 
-def run_rcs(samples, horizon, PMat):
+# def run_rcs(samples, horizon, PMat):
 
-    my_p_mat = PreferenceMatrix()
-    my_p_mat.init(PMat)
-    my_iterations = samples
-    my_horizon = horizon
-    sparring_results, better_arm = run_several_iterations(iterations=my_iterations,arms=my_p_mat, horizon=my_horizon)
-    return list(np.around(sparring_results,3)), better_arm
+#     my_p_mat = PreferenceMatrix()
+#     my_p_mat.init(PMat)
+#     my_iterations = samples
+#     my_horizon = horizon
+#     sparring_results, better_arm = run_several_iterations(iterations=my_iterations,arms=my_p_mat, horizon=my_horizon)
+#     return list(np.around(sparring_results,3)), better_arm
 
 
 class RCS:
-    def __init__(self, horizon,pref_matrix):
-        self.pref_matrix = PreferenceMatrix()
+    def __init__(self, horizon,pref_matrix, n_arms=None):
+        self.pref_matrix = PreferenceMatrix(n_arms=n_arms)
         self.pref_matrix.init(pref_matrix)
         self.horizon = horizon
 

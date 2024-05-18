@@ -36,10 +36,11 @@ class sbm():
 
 class DOUBLER():
 
-	def __init__(self, horizon, pref, regret_func):
+	def __init__(self, horizon, pref, regret_func, n_arms=None):
 
 		self.pref_matrix = np.array(pref)
-		n_arms = len(pref[0])
+		if n_arms is None:
+			n_arms = len(pref[0])
 
 		self.sbm = sbm(n_arms)
 

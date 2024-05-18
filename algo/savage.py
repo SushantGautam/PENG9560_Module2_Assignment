@@ -34,9 +34,11 @@ def unique(a):
 
 class SAVAGE():
 
-	def __init__(self, horizon, pref_matrix, regret_func):
-		
-		self.nArms = len(pref_matrix)  # Number of arms
+	def __init__(self, horizon, pref_matrix, regret_func, n_arms=None):
+		if n_arms is None:
+			self.nArms = len(pref_matrix[0])
+		else:
+			self.nArms = n_arms
 		self.iArms = range(self.nArms)   # The indices of the arms
 		self.numPlays = 2*np.ones([self.nArms, self.nArms])
 		self.RealWins = np.ones([self.nArms, self.nArms])

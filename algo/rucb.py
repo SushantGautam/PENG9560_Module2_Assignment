@@ -3,18 +3,17 @@ import math
 import random
 
 class PreferenceMatrix():
-    def __init__(self):
+    def __init__(self,n_arms=None):
         self.p_values = None
         self.condorcet_winner = None
-        self.n_arms = None
+        self.n_arms = n_arms
         self.delta = None
 
     def init(self, p_mat):
 
         self.p_values = p_mat
-
-        self.n_arms = self.p_values.shape[0]
-
+        if self.n_arms is None:
+            self.n_arms = self.p_values.shape[0]
         self.set_condorcet_winner()
 
         self.set_delta()
@@ -367,33 +366,33 @@ def run_rucb_algorithm(arms, horizon):
     return cumulative_regret, np.argmax(np.sum(possible_best_arms, axis=0))
 
 
-def run_several_iterations(iterations, real_arms, horizon):
+# def run_several_iterations(iterations, real_arms, horizon):
 
-    # Initializing the results vector.
-    results = np.zeros(horizon)
-    # print()
-    # better_arm = np.zeros(real_arms.n_arms)
+#     # Initializing the results vector.
+#     results = np.zeros(horizon)
+#     # print()
+#     # better_arm = np.zeros(real_arms.n_arms)
 
-    for iteration in range(iterations):
-        # print(iteration)
-        # Adding the regret.
-        rest, arms_win = run_rucb_algorithm(real_arms, horizon)
-        results += rest
-        # better_arm += arms_win
+#     for iteration in range(iterations):
+#         # print(iteration)
+#         # Adding the regret.
+#         rest, arms_win = run_rucb_algorithm(real_arms, horizon)
+#         results += rest
+#         # better_arm += arms_win
 
-    return results/(iterations + .0), arms_win
+#     return results/(iterations + .0), arms_win
 
-def run_rucb(samples, horizon, PMat):
-    my_p_mat = PreferenceMatrix()
-    my_p_mat.init(PMat)
-    my_iterations = samples
-    my_horizon = horizon
-    sparring_results, better_arm = run_several_iterations(iterations=my_iterations, real_arms=my_p_mat, horizon=my_horizon)
-    return list(np.around(sparring_results,3)), better_arm
+# def run_rucb(samples, horizon, PMat):
+#     my_p_mat = PreferenceMatrix()
+#     my_p_mat.init(PMat)
+#     my_iterations = samples
+#     my_horizon = horizon
+#     sparring_results, better_arm = run_several_iterations(iterations=my_iterations, real_arms=my_p_mat, horizon=my_horizon)
+#     return list(np.around(sparring_results,3)), better_arm
 
 class RUCB:
-    def __init__(self, horizon,pref_matrix):
-        self.pref_matrix = PreferenceMatrix()
+    def __init__(self, horizon,pref_matrix, n_arms=None):
+        self.pref_matrix = PreferenceMatrix(n_arms=n_arms)
         self.pref_matrix.init(pref_matrix)
         self.horizon = horizon
 
