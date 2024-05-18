@@ -90,10 +90,9 @@ if args.save_result:
 
 import seaborn as sns
 extend_array = lambda input_array: np.array(list(map(lambda arr: arr + [arr[-1]] * (max(map(len, input_array)) - len(arr)), input_array)))
+plt.figure(figsize=(8, 4))
 for key, val in _d.items():
-    a= extend_array(val)
-    a[a < 0] = 0
-    plt.plot(np.mean(a, axis=0), label=key.split('_')[0])
+    plt.plot(np.mean(extend_array(val), axis=0), label=key.split('_')[0])
 # for key, val in _d.items():
 #     data= extend_array(val)
 #     mean_=np.mean(data, axis=0)
@@ -148,5 +147,6 @@ plt.xscale('log')
 plt.yscale('log')
 plt.xlabel('Time (log scale)')
 plt.ylabel('Cumulative Regret (log scale)')
+plt.tight_layout()
 plt.savefig(f'{filename}_.png')
 print(f"Performance plots saved as {filename}_.png")
