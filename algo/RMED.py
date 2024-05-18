@@ -94,7 +94,7 @@ class RMED():
                 res = self.bandit(j[0], j[1])
                 self.result_mat[j[0]][j[1]] += res
                 self.result_mat[j[1]][j[0]] += (1 - res)
-                self.regret += self.regret_fn(j[0], j[1])
+                self.regret += max(0, self.regret_fn(j[0], j[1]))
                 self.regrets.append(float(self.regret))
         self.t = self.L * self.K * (self.K - 1) / 2
         self.update_It()
@@ -113,7 +113,7 @@ class RMED():
                         res = self.bandit(j[0], j[1])
                         self.result_mat[j[0]][j[1]] += res
                         self.result_mat[j[1]][j[0]] += (1 - res)
-                        self.regret += self.regret_fn(j[0], j[1])
+                        self.regret += max(0,self.regret_fn(j[0], j[1]))
                         self.regrets.append(float(self.regret))
                         self.t += 1
 
@@ -126,7 +126,7 @@ class RMED():
                 res = self.bandit(l_t, m_t)
                 self.result_mat[int(l_t)][int(m_t)] += res
                 self.result_mat[int(m_t)][int(l_t)] += (1 - res)
-                self.regret += self.regret_fn(l_t, m_t)
+                self.regret += max(0,self.regret_fn(l_t, m_t))
                 self.regrets.append(float(self.regret))
                 self.L_r = np.setdiff1d(self.L_r, np.array([l_t]))
                 self.L_n = np.union1d(self.L_n, np.array(
