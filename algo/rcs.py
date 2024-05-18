@@ -26,6 +26,8 @@ class PreferenceMatrix():
             row[i] = True
             if all(row):
                 self.condorcet_winner = i
+        if self.condorcet_winner is None:
+            self.condorcet_winner = random.choice(range(self.n_arms))
 
     def set_delta(self):
 
@@ -58,7 +60,7 @@ def update_regret(current_regret, cumulative_regret, t):
         cumulative_regret[t] = current_regret[t]
     else:
 
-        cumulative_regret[t] = current_regret[t] + cumulative_regret[t-1]
+        cumulative_regret[t] = max(0, current_regret[t]) + 0, cumulative_regret[t-1]
 
 
 class RCSalg():

@@ -10,7 +10,7 @@
 python -m pip install -r requirements.txt
 
 # change the experiment params before submitting.
-srun python experiment.py --horizon 100 --samples 10 --n_arms 8 --dataset data/10_real.txt  --run_name arm_0_$SLURM_JOB_ID  --best_arm 8  --save_result true 
+srun python experiment.py --horizon 100000 --samples 10 --n_arms 2  --run_name arm_2_$SLURM_JOB_ID --dataset data/MSLR-Perfect.txt  --best_arm 1  --save_result true 
 
 
 # submit job with:  sbatch run.slurm
