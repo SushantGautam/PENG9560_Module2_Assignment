@@ -155,7 +155,7 @@ class SAVAGE():
 			if t == 1:
 				cumulative_regret[t] = regret[t]
 			else:
-				cumulative_regret[t] = regret[t] + cumulative_regret[t-1]
+				cumulative_regret[t] = max(0, regret[t]) + cumulative_regret[t-1]
 
 		return list(np.around(cumulative_regret,3)), self.bestArm
 

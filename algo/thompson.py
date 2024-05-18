@@ -54,7 +54,7 @@ class THOMPSON():
                 else:
                     self.sbm.feedback(yt, 1)
                     self.sbm.feedback(xt, 0)
-                regret.append(regret[-1] + self.regret_func(xt, yt))
+                regret.append(regret[-1] + max(0, self.regret_func(xt, yt)))
                 self.t += 1
                 if self.t >= self.horizon:
                     break
