@@ -44,7 +44,7 @@ class InterleavedFilter():
                 self.result[b_hat][b] += res
                 self.result[b][b_hat] += (1 - res)
                 p_hat[b] = self.calc_P(b_hat, b)  # Updated p_hat
-                self.regret += self.regret_fn(b_hat, b)
+                self.regret += max(0, self.regret_fn(b_hat, b))
                 self.regrets.append(float(self.regret))
                 self.t += 1
             '''
@@ -62,7 +62,7 @@ class InterleavedFilter():
                 self.W = np.setdiff1d(self.W, np.array([new_candidate[0]]))
                 p_hat = {}  # New round
         for i in range(self.t, self.T):
-            self.regret += self.regret_fn(b_hat, b_hat)
+            self.regret += max(0,self.regret_fn(b_hat, b_hat))
             self.regrets.append(float(self.regret))
             
         return list(np.around(self.regrets[:self.T],3)), b_hat, self.t
