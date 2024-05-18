@@ -36,7 +36,7 @@ class BeatTheMean():
             self.wins[b][b_dash] += res
             self.plays[b][b_dash] += 1
             self.t += 1
-            self.regret += self.regret_fn(b, b_dash)
+            self.regret += max(0, self.regret_fn(b, b_dash))
             self.regrets.append(float(self.regret))
             w = np.sum(self.wins, axis=1)
             b = np.sum(self.plays, axis=1)
