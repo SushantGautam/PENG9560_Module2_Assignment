@@ -74,7 +74,7 @@ class DOUBLER():
 
 				# self.sbm.pulls[xt] += 1
 
-				regret.append(regret[-1]+self.regret_func(xt,yt))
+				regret.append(regret[-1]+ max(0, self.regret_func(xt,yt)))
 
 				self.t += 1
 
