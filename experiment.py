@@ -73,7 +73,7 @@ def run_algorithm(algo_name):
         case _:
             raise ValueError("Invalid algorithm name")
     print(f"{algo_name}:", x[1], end=" ")
-    _d[f"{algo_name}_regrets"].append(x[0])
+    _d[f"{algo_name}_regrets"].append([float(i) for i in x[0]])
     winner[f"{algo_name}_winner"].append(x[1])
 
 
