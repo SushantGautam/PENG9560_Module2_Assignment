@@ -30,8 +30,10 @@ class sbm():
             self.beta[arm] += 1
 
 class THOMPSON():
-    def __init__(self, horizon, pref, regret_func, n_arms=2):
+    def __init__(self, horizon, pref, regret_func, n_arms=None):
         self.pref_matrix = np.array(pref)
+        if n_arms is None:
+            n_arms = len(pref[0])
         self.sbm = sbm(n_arms)
         self.l = np.random.randint(n_arms, size=1)
         self.i, self.t = 1, 1
