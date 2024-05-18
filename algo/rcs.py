@@ -59,9 +59,7 @@ def update_regret(current_regret, cumulative_regret, t):
 
         cumulative_regret[t] = current_regret[t]
     else:
-
-        cumulative_regret[t] = max(0, current_regret[t]) + 0, cumulative_regret[t-1]
-
+        cumulative_regret[t] = max(0, current_regret[t]) + cumulative_regret[t-1]
 
 class RCSalg():
 
