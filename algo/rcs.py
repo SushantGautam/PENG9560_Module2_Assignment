@@ -305,10 +305,13 @@ class RCSalg():
         inverted_b_vector = ~self.b_vector
 
         arms_only_in_c = self.c_vector & inverted_b_vector
+        div_val= float(2**(np.sum(self.b_vector)))
+        if div_val == 0:
+            div_val = 0.000001
 
         probability_vector = \
             np.multiply(0.5, self.b_vector) +\
-            np.multiply(float((1/(float(2**(np.sum(self.b_vector)))*float(np.sum(arms_only_in_c))))), arms_only_in_c)
+            np.multiply(float((1/(div_val*float(np.sum(arms_only_in_c))))), arms_only_in_c)
 
         chosen_arm = choose_from_probability_vector(probability_vector=probability_vector)
 

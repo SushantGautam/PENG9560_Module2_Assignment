@@ -248,16 +248,18 @@ class RUCBalg():
 
     def draw_arm_from_c(self):
 
-        # Arms that are no in the Best set.
+        # Arms that are no in the Best set.f
         inverted_b_vector = ~self.b_vector
 
         # Arms that are only in the champions vector.
         arms_only_in_c = self.c_vector & inverted_b_vector
 
         # Calculating the probability vector according to the RUCB algorithm.
-        probability_vector = \
-            np.multiply(0.5, self.b_vector) +\
-            np.multiply(float((1/(float(2**(np.sum(self.b_vector)))*float(np.sum(arms_only_in_c))))), arms_only_in_c)
+        div_val= float(2**(np.sum(self.b_vector)))
+        if div_val == 0:
+            div_val = 0.000001
+
+        probability_vector = np.multiply(0.5, self.b_vector) + np.multiply(float((1/(div_val*float(np.sum(arms_only_in_c))))), arms_only_in_c)
 
         # Choosing an arm according to the probability vector.
         chosen_arm = choose_from_probability_vector(probability_vector=probability_vector)
